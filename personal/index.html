@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Установка кодировки и масштаба -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Мета-теги SEO для личного использования -->
+    <meta name="description"
+        content="Explore your personal feed, manage group links, and invite friends with the @webhookos_bot.">
+    <meta name="keywords"
+        content="@webhookos_bot, personal feed, group management, referrals, Telegram bot, productivity, automation">
+    <meta name="author" content="Null-X Roman @onlynet0 @notevm">
+
+    <!-- Open Graph для социальных сетей -->
+    <meta property="og:title" content="@webhookos_bot - Personal Use">
+    <meta property="og:description"
+        content="Your one-stop solution for managing personal feeds, folders, and referrals.">
+    <meta property="og:image" content="../int.gif">
+    <meta property="og:url" content="https://t.me/webhookos_bot">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="@webhookos_bot">
+
+    <!-- Мета-теги для Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@webhookos_bot - Personal Use">
+    <meta name="twitter:description" content="Manage your personal feed, folders, and referrals easily with @webhookos_bot.">
+    <meta name="twitter:image" content="../int.gif">
+    <meta name="twitter:url" content="https://t.me/webhookos_bot">
+
+    <!-- Robot Follow -->
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="en">
+    <meta name="rating" content="General">
+    <meta name="theme-color" content="#1e3c72">
+
+    <!-- Защита от XSS с помощью Content Security Policy (CSP) -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+
+    <!-- Защита от кликджекинга -->
+    <meta http-equiv="Content-Security-Policy" content="
+            img-src 'self' data:;
+            object-src 'none';
+            frame-ancestors 'none';
+            base-uri 'self';
+            form-action 'self';
+        ">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+
+    <!-- Иконки для мобильных устройств -->
+    <link rel="icon" href="../int.gif">
+    <link rel="apple-touch-icon" href="../int.gif">
+    <link rel="icon" sizes="192x192" href="../int.gif">
+    <link rel="icon" sizes="512x512" href="../int.gif">
+
+    <!-- Подключение шрифтов -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="../styles.css" loading="lazy">
+
+    <title>@webhookos_bot - Personal Use</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">@webhookos_bot</div>
+        <nav>
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="#personal-feed" class="nav-link active">Feed</a>
+            <a href="#personal-folders" class="nav-link">Folders</a>
+            <a href="#personal-referrals" class="nav-link">Referrals</a>
+        </nav>
+    </header>
+
+    <div class="timeline">
+        <div class="scroll-indicator">
+            <div class="progress-line"></div>
+        </div>
+
+        <section class="slide" id="personal-feed">
+            <div class="content">
+                <div class="text-block">
+                    <h2 class="glass-text">Your Personal Feed</h2>
+                    <p class="glass-text subtext">
+                        Explore <span class="highlight">tailored recs</span>
+                        with a single tap!
+                    </p>
+                    <button class="tg-btn show-btn" data-show="feed">Show</button>
+                </div>
+                <div class="card feed-card">
+                    <img src="../2.gif" alt="Feed" class="interactive-img" loading="lazy">
+                </div>
+            </div>
+            <div class="instructions">
+                <h3>How to Use:</h3>
+                <p>1. Tap "Feed".<br>2. Swipe posts.<br>3. Follow or Like.</p>
+            </div>
+        </section>
+
+        <section class="slide" id="personal-folders">
+            <div class="content">
+                <div class="text-block">
+                    <h2 class="glass-text">Your Folders</h2>
+                    <p class="glass-text subtext">
+                        Store <span class="highlight">group links</span>
+                        in one cozy place.
+                    </p>
+                    <button class="tg-btn show-btn" data-show="groups">Show</button>
+                </div>
+                <img src="../1.gif" alt="Folders" class="interactive-img" loading="lazy">
+            </div>
+            <div class="instructions">
+                <h3>How to Use:</h3>
+                <p>1. Join via "Follow".<br>2. Tap "Groups".<br>3. Links auto-saved.</p>
+            </div>
+        </section>
+
+        <section class="slide" id="personal-referrals">
+            <div class="content">
+                <div class="text-block">
+                    <h2 class="glass-text">Referrals</h2>
+                    <p class="glass-text subtext">
+                        Invite friends, unlock <span class="highlight">more slots</span>!
+                    </p>
+                    <button class="tg-btn show-btn" data-show="referrals">Show</button>
+                    <a href="../index.html" class="tg-btn next-btn">Finish</a>
+                </div>
+                <img src="../1.gif" alt="Folders" class="interactive-img" loading="lazy">
+            </div>
+            <div class="instructions">
+                <h3>How to Use:</h3>
+                <p>1. Go "Settings".<br>2. Tap "Invite".<br>3. Share link!</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="telegram-demo" id="telegram-demo">
+        <div class="chat-window"></div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 @webhookos_bot | Made with ❤️</p>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../serv.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

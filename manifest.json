@@ -1,0 +1,21 @@
+{
+    "name": "@webhookos_bot",
+    "short_name": "@webhookos_bot",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#1e3c72",
+    "description": "Your personal assistant for managing communities and tasks.",
+    "icons": [
+        {
+            "src": "int.gif",
+            "sizes": "192x192",
+            "type": "image/gif"
+        },
+        {
+            "src": "int.gif",
+            "sizes": "512x512",
+            "type": "image/gif"
+        }
+    ]
+}
