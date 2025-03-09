@@ -201,23 +201,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const shows = {
         registration: `
             <div class="message user">/start</div>
-            <div class="message bot"><img src="int.gif" alt="Bot Icon"> Welcome! Navigate with buttons.<br>News: @notevm</div>
+            <div class="message bot"><img src="../int.gif" alt="Bot Icon"> Welcome! Navigate with buttons.<br>News: @notevm</div>
         `,
         feed: `
             <div class="message user">Feed</div>
-            <div class="message bot"><img src="int.gif" alt="Bot Icon"> Feed [1/5]:<br>Main: GroupName (group)<br>Post: Hello!<br>Date: 2025-02-28 12:00<br>Views: 1 <br> Likes: 0<br>Subs: 10<br>Desc: Welcome to our group...</div>
+            <div class="message bot"><img src="../int.gif" alt="Bot Icon"> Feed [1/5]:<br>Main: GroupName (group)<br>Post: Hello!<br>Date: 2025-02-28 12:00<br>Views: 1 <br> Likes: 0<br>Subs: 10<br>Desc: Welcome to our group...</div>
         `,
         groups: `
             <div class="message user">Groups</div>
-            <div class="message bot"><img src="int.gif" alt="Bot Icon"> Groups:<br>Owned:<br>- GroupName [Public] (active)<br>  Host: 0h Join: 1<br>  Desc: Welcome...</div>
+            <div class="message bot"><img src="../int.gif" alt="Bot Icon"> Groups:<br>Owned:<br>- GroupName [Public] (active)<br>  Host: 0h Join: 1<br>  Desc: Welcome...</div>
         `,
         tickets: `
             <div class="message user">Admin Panel</div>
-            <div class="message bot"><img src="int.gif" alt="Bot Icon"> Admin for GroupName [Public]:<br>Tickets:<br>- #1 by ID:12345 (pending)<br>  At: 2025-02-28 12:00 <br> Exp: 2025-03-01 12:00<br>  Admin: @user</div>
+            <div class="message bot"><img src="../int.gif" alt="Bot Icon"> Admin for GroupName [Public]:<br>Tickets:<br>- #1 by ID:12345 (pending)<br>  At: 2025-02-28 12:00 <br> Exp: 2025-03-01 12:00<br>  Admin: @user</div>
         `,
         analytics: `
             <div class="message user">Groups</div>
-            <div class="message bot"><img src="int.gif" alt="Bot Icon"> Group: GroupName [Public]<br>Join: 5 Skip: 2 Like: 3<br>Views: 10<br>Subs: 15</div>
+            <div class="message bot"><img src="../int.gif" alt="Bot Icon"> Group: GroupName [Public]<br>Join: 5 Skip: 2 Like: 3<br>Views: 10<br>Subs: 15</div>
         `
     };
 

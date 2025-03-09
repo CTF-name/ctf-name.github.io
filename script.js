@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         root.style.setProperty('--primary-color-rgb', isDark ? '10, 25, 47' : '30, 60, 114');
         
         // Обновляем стили для интерактивных элементов
-        document.querySelectorAll('.interactive-img').forEach(img => {
+    document.querySelectorAll('.interactive-img').forEach(img => {
             img.style.boxShadow = `0 10px 30px rgba(0, 0, 0, ${isDark ? '0.3' : '0.15'}), 
                                   0 0 20px rgba(var(--neon-color-rgb), 0.3)`;
         });
@@ -163,8 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Обновление 3D трансформации
     function updateImageTransform(e, img) {
         if (!e) return;
-        
-        const rect = img.getBoundingClientRect();
+
+            const rect = img.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         
