@@ -63,18 +63,45 @@
     <!-- Подключение стилей -->
     <link rel="stylesheet" href="../styles.css" loading="lazy">
 
-    <title>@webhookos_bot - Personal Use</title>
+    <title data-translate="personalTitle">@webhookos_bot - Personal Use</title>
 </head>
 
 <body>
     <header class="header">
-        <div class="logo">@webhookos_bot</div>
+        <div class="header-left">
+            <img src="../int.gif" alt="Logo" class="logo-img">
+            <div class="logo">
+                <a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a>
+                <span class="logo-subtitle" data-translate="botDescription">Corporate Community Tracker</span>
+            </div>
+        </div>
         <nav>
-            <a href="../index.html" class="nav-link">Home</a>
-            <a href="#personal-feed" class="nav-link active">Feed</a>
-            <a href="#personal-folders" class="nav-link">Folders</a>
-            <a href="#personal-referrals" class="nav-link">Referrals</a>
+            <a href="../index.html" class="nav-link" data-translate="home">Home</a>
+            <a href="#personal-feed" class="nav-link active" data-translate="feed">Feed</a>
+            <a href="#personal-folders" class="nav-link" data-translate="folders">Folders</a>
+            <a href="#personal-referrals" class="nav-link" data-translate="referrals">Referrals</a>
         </nav>
+
+        <div class="header-controls">
+            <div class="lang-switch">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
+
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider">
+                        <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3zm0-2c.28 0 .5-.22.5-.5v-3c0-.28-.22-.5-.5-.5s-.5.22-.5.5v3c0 .28.22.5.5.5zm0 14c-.28 0-.5.22-.5.5v3c0 .28.22.5.5.5s.5-.22.5-.5v-3c0-.28-.22-.5-.5-.5zm8.5-7h3c.28 0 .5-.22.5-.5s-.22-.5-.5-.5h-3c-.28 0-.5.22-.5.5s.22.5.5.5zm-17 0h3c.28 0 .5-.22.5-.5s-.22-.5-.5-.5h-3c-.28 0-.5.22-.5.5s.22.5.5.5z"/>
+                        </svg>
+                        <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 3c.28 0 .5-.22.5-.5v-2c0-.28-.22-.5-.5-.5s-.5.22-.5.5v2c0 .28.22.5.5.5zm0 18c-.28 0-.5.22-.5.5v2c0 .28.22.5.5.5s.5-.22.5-.5v-2c0-.28-.22-.5-.5-.5zm8.5-12h2c.28 0 .5-.22.5-.5s-.22-.5-.5-.5h-2c-.28 0-.5.22-.5.5s.22.5.5.5zm-17 0h2c.28 0 .5-.22.5-.5s-.22-.5-.5-.5h-2c-.28 0-.5.22-.5.5s.22.5.5.5z"/>
+                        </svg>
+                    </div>
+                </label>
+            </div>
+        </div>
     </header>
 
     <div class="timeline">
@@ -85,56 +112,65 @@
         <section class="slide" id="personal-feed">
             <div class="content">
                 <div class="text-block">
-                    <h2 class="glass-text">Your Personal Feed</h2>
-                    <p class="glass-text subtext">
+                    <h2 class="glass-text" data-translate="personalFeed">Your Personal Feed</h2>
+                    <p class="glass-text subtext" data-translate="feedSubtext">
                         Explore <span class="highlight">tailored recs</span>
                         with a single tap!
                     </p>
-                    <button class="tg-btn show-btn" data-show="feed">Show</button>
+                    <button class="tg-btn show-btn" data-show="feed" data-translate="show">Show</button>
                 </div>
-                <div class="card feed-card">
-                    <img src="../2.gif" alt="Feed" class="interactive-img" loading="lazy">
+                <div class="interactive-img-container">
+                    <div class="card feed-card">
+                        <img src="../feed.gif" alt="Feed-card" class="interactive-img" loading="lazy">
+                    </div>
                 </div>
             </div>
             <div class="instructions">
-                <h3>How to Use:</h3>
-                <p>1. Tap "Feed".<br>2. Swipe posts.<br>3. Follow or Like.</p>
+                <h3 data-translate="howToUse">How to Use:</h3>
+                <p data-translate="feedInstructions">1. Tap "Feed".<br>2. Swipe posts.<br>3. Follow or Like.</p>
             </div>
         </section>
 
         <section class="slide" id="personal-folders">
             <div class="content">
                 <div class="text-block">
-                    <h2 class="glass-text">Your Folders</h2>
-                    <p class="glass-text subtext">
+                    <h2 class="glass-text" data-translate="yourFolders">Your Folders</h2>
+                    <p class="glass-text subtext" data-translate="foldersSubtext">
                         Store <span class="highlight">group links</span>
                         in one cozy place.
                     </p>
-                    <button class="tg-btn show-btn" data-show="groups">Show</button>
+                    <button class="tg-btn show-btn" data-show="groups" data-translate="show">Show</button>
                 </div>
-                <img src="../1.gif" alt="Folders" class="interactive-img" loading="lazy">
+                <div class="interactive-img-container">
+                    <img src="../group.gif" alt="Folders" class="interactive-img" loading="lazy">
+                </div>
             </div>
             <div class="instructions">
-                <h3>How to Use:</h3>
-                <p>1. Join via "Follow".<br>2. Tap "Groups".<br>3. Links auto-saved.</p>
+                <h3 data-translate="howToUse">How to Use:</h3>
+                <p data-translate="foldersInstructions">1. Join via "Follow".<br>2. Tap "Groups".<br>3. Links auto-saved.</p>
             </div>
         </section>
 
         <section class="slide" id="personal-referrals">
             <div class="content">
                 <div class="text-block">
-                    <h2 class="glass-text">Referrals</h2>
-                    <p class="glass-text subtext">
+                    <h2 class="glass-text" data-translate="referralsTitle">Referrals</h2>
+                    <p class="glass-text subtext" data-translate="referralsSubtext">
                         Invite friends, unlock <span class="highlight">more slots</span>!
                     </p>
-                    <button class="tg-btn show-btn" data-show="referrals">Show</button>
-                    <a href="../index.html" class="tg-btn next-btn">Finish</a>
+                    <button class="tg-btn show-btn" data-show="referrals" data-translate="show">Show</button>
+                    <a href="../index.html" class="tg-btn next-btn" data-translate="finish">Finish</a>
                 </div>
-                <img src="../1.gif" alt="Folders" class="interactive-img" loading="lazy">
+                <div class="interactive-img-container">
+                    <img src="../clap.gif" alt="Folders" class="interactive-img" loading="lazy">
+                </div>
             </div>
             <div class="instructions">
-                <h3>How to Use:</h3>
-                <p>1. Go "Settings".<br>2. Tap "Invite".<br>3. Share link!</p>
+                <h3 data-translate="howToUse">How to Use:</h3>
+                <p data-translate="referralsInstructions">1. Go "Settings".
+                    <br>2. Tap "Invite".
+                    <br>3. Share link!
+                </p>
             </div>
         </section>
     </div>
@@ -144,9 +180,10 @@
     </div>
 
     <footer class="footer">
-        <p>© 2025 @webhookos_bot | Made with ❤️</p>
+        <p>© 2025 <a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a> | <span data-translate="madeWith">Made with ❤️</span></p>
     </footer>
 
+    <script src="../translations.js"></script>
     <script src="../script.js"></script>
     <script src="../serv.js"></script>
     <script src="script.js"></script>

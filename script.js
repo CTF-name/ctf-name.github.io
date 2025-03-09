@@ -123,30 +123,259 @@ document.addEventListener('DOMContentLoaded', () => {
         document.title = titleMap[activeSlide.id] || '@webhookos_bot';
     }
 
-    // Интерактивные изображения
-    document.querySelectorAll('.interactive-img').forEach(img => {
-        img.draggable = true;
-        img.addEventListener('dragstart', e => {
-            e.dataTransfer.setData('text/plain', 'https://t.me/webhookos_bot');
+    // Инициализация темы
+    function initializeTheme() {
+        const themeToggle = document.getElementById('checkbox');
+        const body = document.documentElement;
+        
+        // Проверяем сохраненную тему
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', currentTheme);
+        themeToggle.checked = currentTheme === 'dark';
+
+        // Обработчик переключения темы
+        themeToggle.addEventListener('change', function() {
+            const newTheme = this.checked ? 'dark' : 'light';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Обновляем цвета для всех элементов
+            updateThemeColors(newTheme);
+        });
+    }
+
+    // Обновление цветов темы
+    function updateThemeColors(theme) {
+        const root = document.documentElement;
+        const isDark = theme === 'dark';
+        
+        root.style.setProperty('--neon-color', isDark ? '#64ffda' : '#00ff88');
+        root.style.setProperty('--neon-color-rgb', isDark ? '100, 255, 218' : '0, 255, 136');
+        root.style.setProperty('--primary-color-rgb', isDark ? '10, 25, 47' : '30, 60, 114');
+        
+        // Обновляем стили для интерактивных элементов
+        document.querySelectorAll('.interactive-img').forEach(img => {
+            img.style.boxShadow = `0 10px 30px rgba(0, 0, 0, ${isDark ? '0.3' : '0.15'}), 
+                                  0 0 20px rgba(var(--neon-color-rgb), 0.3)`;
+        });
+    }
+
+    // Обновление 3D трансформации
+    function updateImageTransform(e, img) {
+        if (!e) return;
+        
+        const rect = img.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const xRotation = ((y - rect.height / 2) / rect.height) * 20;
+        const yRotation = ((x - rect.width / 2) / rect.width) * 20;
+        
+        img.style.transform = `
+            perspective(1000px)
+            rotateX(${-xRotation}deg)
+            rotateY(${yRotation}deg)
+            translateZ(30px)
+        `;
+    }
+
+    // Инициализация 3D эффектов
+    function initialize3DEffects() {
+        const images = document.querySelectorAll('.interactive-img');
+        
+        images.forEach(img => {
+            const container = img.parentElement;
+            let isHovered = false;
+            
+            container.addEventListener('mouseenter', () => {
+                isHovered = true;
+                img.style.transition = 'transform 0.2s ease-out';
+            });
+            
+            container.addEventListener('mouseleave', () => {
+                isHovered = false;
+                img.style.transition = 'transform 0.5s ease-out';
+                img.style.transform = 'translateZ(0) rotateX(0) rotateY(0)';
+            });
+            
+            container.addEventListener('mousemove', (e) => {
+                if (!isHovered) return;
+                updateImageTransform(e, img);
+            });
+        });
+    }
+
+    // Добавление иконок к текстовым блокам
+    function addBotIcons() {
+        const textBlocks = document.querySelectorAll('.text-block');
+        const iconSvg = `
+            <svg class="text-block-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+            </svg>
+        `;
+        
+        textBlocks.forEach(block => {
+            if (!block.querySelector('.text-block-icon')) {
+                block.insertAdjacentHTML('afterbegin', iconSvg);
+            }
+        });
+    }
+
+    // Обновление перевода для всех элементов
+    function updateTranslations(lang) {
+        document.querySelectorAll('[data-translate]').forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (translations[lang] && translations[lang][key]) {
+                const originalHTML = element.innerHTML;
+                
+                // Сохраняем все HTML элементы и их атрибуты
+                const spans = originalHTML.match(/<span[^>]*>.*?<\/span>/g) || [];
+                const links = originalHTML.match(/<a[^>]*>.*?<\/a>/g) || [];
+                const lineBreaks = originalHTML.match(/<br\s*\/?>/g) || [];
+                const bolds = originalHTML.match(/<b>.*?<\/b>/g) || [];
+                const italics = originalHTML.match(/<i>.*?<\/i>/g) || [];
+                
+                let newText = translations[lang][key];
+                
+                // Восстанавливаем переносы строк
+                if (lineBreaks.length > 0) {
+                    const originalParts = originalHTML.split(/<br\s*\/?>/);
+                    const newParts = newText.split('\n');
+                    
+                    if (originalParts.length === newParts.length) {
+                        newText = newParts.join('<br>');
+                    }
+                }
+                
+                // Восстанавливаем span элементы с их классами и атрибутами
+                spans.forEach(span => {
+                    const spanClass = span.match(/class="([^"]*)"/) ? span.match(/class="([^"]*)"/)[1] : '';
+                    const spanText = span.match(/>([^<]*)</)[1];
+                    const translationKey = spanText.trim();
+                    const translatedText = translations[lang][translationKey] || spanText;
+                    
+                    // Сохраняем все атрибуты span
+                    const spanAttributes = span.match(/<span([^>]*)>/)[1];
+                    newText = newText.replace(translationKey, `<span${spanAttributes}>${translatedText}</span>`);
+                });
+                
+                // Восстанавливаем ссылки с их атрибутами
+                links.forEach(link => {
+                    const href = link.match(/href="([^"]*)"/) ? link.match(/href="([^"]*)"/)[1] : '';
+                    const linkClass = link.match(/class="([^"]*)"/) ? link.match(/class="([^"]*)"/)[1] : '';
+                    const linkText = link.match(/>([^<]*)</)[1];
+                    
+                    // Сохраняем все атрибуты ссылки
+                    const linkAttributes = link.match(/<a([^>]*)>/)[1];
+                    newText = newText.replace(linkText, `<a${linkAttributes}>${linkText}</a>`);
+                });
+                
+                // Восстанавливаем жирный текст
+                bolds.forEach(bold => {
+                    const boldText = bold.match(/>([^<]*)</)[1];
+                    const translatedText = translations[lang][boldText] || boldText;
+                    newText = newText.replace(boldText, `<b>${translatedText}</b>`);
+                });
+                
+                // Восстанавливаем курсив
+                italics.forEach(italic => {
+                    const italicText = italic.match(/>([^<]*)</)[1];
+                    const translatedText = translations[lang][italicText] || italicText;
+                    newText = newText.replace(italicText, `<i>${translatedText}</i>`);
+                });
+
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = newText;
+                } else {
+                    element.innerHTML = newText;
+                }
+            }
+        });
+    }
+
+    // Инициализация языка
+    function initializeLanguage() {
+        const currentLang = getCurrentLanguage();
+        updateLanguageButtons(currentLang);
+        updateTranslations(currentLang);
+    }
+
+    // Обновление кнопок языка
+    function updateLanguageButtons(lang) {
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+    }
+
+    // Инициализация счетчика
+    function initializeCounter() {
+        const counter = document.getElementById('uptime-counter');
+        if (!counter) return;
+
+        const startDate = new Date('2025-03-01');
+        
+        function updateCounter() {
+            const now = new Date();
+            const diff = Math.max(0, now - startDate);
+            
+            const timeUnits = {
+                months: Math.floor(diff / (1000 * 60 * 60 * 24 * 30)),
+                weeks: Math.floor((diff / (1000 * 60 * 60 * 24 * 7)) % 4),
+                days: Math.floor((diff / (1000 * 60 * 60 * 24)) % 7),
+                hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+                minutes: Math.floor((diff / (1000 * 60)) % 60),
+                seconds: Math.floor((diff / 1000) % 60)
+            };
+
+            const currentLang = getCurrentLanguage();
+            counter.innerHTML = Object.entries(timeUnits)
+                .map(([unit, value]) => `
+                    <span class="${value % 2 ? 'active' : ''}" data-label="${translations[currentLang][unit]}">
+                        ${String(value).padStart(2, '0')}
+                    </span>
+                `)
+                .join('');
+        }
+
+        // Обновляем счетчик каждую секунду
+        updateCounter();
+        setInterval(updateCounter, 1000);
+    }
+
+    // Инициализация прокрутки наверх
+    function initializeScrollToTop() {
+        const footer = document.querySelector('.footer');
+        if (!footer) return;
+
+        footer.innerHTML += `
+            <button class="scroll-top-btn" aria-label="Scroll to top">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/>
+                </svg>
+            </button>
+        `;
+
+        const scrollTopBtn = document.querySelector('.scroll-top-btn');
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        img.addEventListener('mousemove', e => {
-            const rect = img.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            const mouseX = e.clientX - centerX;
-            const mouseY = e.clientY - centerY;
-
-            const rotateX = Math.min(30, Math.max(-30, mouseY / 5));
-            const rotateY = Math.min(30, Math.max(-30, -mouseX / 5));
-
-            img.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        // Показываем/скрываем кнопку при прокрутке
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
         });
+    }
 
-        img.addEventListener('mouseleave', () => {
-            img.style.transform = 'rotateX(0deg) rotateY(0deg)';
-        });
-    });
+    // Инициализация всех компонентов
+    initialize3DEffects();
+    addBotIcons();
+    initializeTheme();
+    initializeLanguage();
+    initializeCounter();
+    initializeScrollToTop();
+    
+    // Обновляем перевод при загрузке
+    updateTranslations(getCurrentLanguage());
 
     telegramDemo.addEventListener('click', () => {
         telegramDemo.classList.remove('active');
@@ -163,52 +392,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Счётчик времени работы
-    const startDate = new Date('2025-03-01');
-    const counter = document.getElementById('uptime-counter');
-    if (counter) {
-        function updateCounter() {
-            const now = new Date();
-            const diff = now - startDate;
-            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
-            const weeks = Math.floor(diff / (1000 * 60 * 60 * 24 * 7)) % 52;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 7;
-            const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-            const minutes = Math.floor(diff / (1000 * 60)) % 60;
-            const seconds = Math.floor(diff / 1000) % 60;
-
-            counter.innerHTML = `
-                <span class="${seconds % 2 ? 'active' : ''}">${months} mo</span>
-                <span class="${seconds % 2 ? 'active' : ''}">${weeks} wk</span>
-                <span class="${seconds % 2 ? 'active' : ''}">${days} d</span>
-                <span class="${seconds % 2 ? 'active' : ''}">${hours} h</span>
-                <span class="${seconds % 2 ? 'active' : ''}">${minutes} min</span>
-                <span class="${seconds % 2 ? 'active' : ''}">${seconds} s</span>
-            `;
-        }
-        updateCounter();
-        setInterval(updateCounter, 1000);
+    // Проверяем загрузку переводов
+    if (typeof translations === 'undefined') {
+        console.error('Translations not loaded. Loading default translations...');
+        translations = {
+            ru: {
+                months: 'мес',
+                weeks: 'нед',
+                days: 'дн',
+                hours: 'ч',
+                minutes: 'мин',
+                seconds: 'сек'
+            },
+            en: {
+                months: 'mo',
+                weeks: 'wk',
+                days: 'd',
+                hours: 'h',
+                minutes: 'min',
+                seconds: 's'
+            }
+        };
     }
 
-    // Переключение слайдеров
-    document.querySelectorAll('.slider-nav').forEach(nav => {
-        const slider = nav.previousElementSibling;
-        const items = slider.querySelectorAll('.feature-item, .step-item');
-        let currentIndex = 0;
+    // Инициализация языка
+    let currentLang = localStorage.getItem('lang') || 'en';
+    const langButtons = document.querySelectorAll('.lang-btn');
 
-        items[currentIndex].classList.add('active');
+    function setLanguage(lang) {
+        localStorage.setItem('language', lang);
+        updateTranslations(lang);
+        updateLanguageButtons(lang);
+    }
 
-        nav.querySelector('.prev').addEventListener('click', () => {
-            items[currentIndex].classList.remove('active');
-            currentIndex = (currentIndex - 1 + items.length) % items.length;
-            items[currentIndex].classList.add('active');
-        });
-
-        nav.querySelector('.next').addEventListener('click', () => {
-            items[currentIndex].classList.remove('active');
-            currentIndex = (currentIndex + 1) % items.length;
-            items[currentIndex].classList.add('active');
-        });
+    // Обработчики для кнопок языка
+    langButtons.forEach(btn => {
+        btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
     });
 
     // Демонстрации
@@ -281,4 +500,70 @@ document.addEventListener('DOMContentLoaded', () => {
     if (activeBranch && document.querySelector(`.${activeBranch}-branch`)) {
         document.querySelector(`.${activeBranch}-branch`).classList.add('active');
     }
+
+    // Создание звезд для параллакса
+    function createStars() {
+        const starsContainer = document.createElement('div');
+        starsContainer.className = 'stars-container';
+        document.body.appendChild(starsContainer);
+
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'parallax-star';
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100}vh`;
+            starsContainer.appendChild(star);
+        }
+    }
+
+    // Анимация при прокрутке
+    function handleScroll() {
+        const scrolled = window.scrollY;
+        const windowHeight = window.innerHeight;
+        
+        // Анимация звезд
+        document.body.classList.toggle('scroll-active', scrolled > 50);
+        
+        // Анимация появления элементов
+        document.querySelectorAll('.fade-in').forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            if (elementTop < windowHeight * 0.8) {
+                element.classList.add('visible');
+            }
+        });
+    }
+
+    // Инициализация
+    createStars();
+    handleScroll();
+
+    // Добавляем класс fade-in к элементам
+    document.querySelectorAll('.content > *').forEach(element => {
+        element.classList.add('fade-in');
+    });
+
+    // Обработчики событий
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+
+    // Отключаем параллакс эффект для слайдов
+    document.querySelectorAll('.slide').forEach(slide => {
+        slide.style.transform = 'none';
+        slide.style.transformStyle = 'flat';
+    });
+
+    // Инициализация языка при загрузке
+    setLanguage(currentLang);
 });
+
+// Получение текущего языка
+function getCurrentLanguage() {
+    return localStorage.getItem('language') || 'en';
+}
+
+// Обновление языка
+function setLanguage(lang) {
+    localStorage.setItem('language', lang);
+    updateTranslations(lang);
+    updateLanguageButtons(lang);
+}

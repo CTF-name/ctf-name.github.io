@@ -58,11 +58,18 @@
 
     <!-- Защита от XSS с помощью Content Security Policy (CSP) -->
     <meta http-equiv="Content-Security-Policy" content="
-        img-src 'self' data:;
+        default-src 'self' https:;
+        style-src 'self' https: 'unsafe-inline';
+        script-src 'self' https: 'unsafe-inline' 'unsafe-eval';
+        img-src 'self' data: https:;
+        font-src 'self' https: data:;
+        connect-src 'self' https:;
+        frame-src 'self' https:;
+        media-src 'self' https:;
         object-src 'none';
-        frame-ancestors 'none';
         base-uri 'self';
         form-action 'self';
+        frame-ancestors 'none';
     ">
 
     <!-- Защита от кликджекинга -->
@@ -107,19 +114,46 @@
     <link rel="stylesheet" href="../styles.css" loading="lazy">
 
     <!-- Заголовок страницы -->
-    <title>@webhookos_bot - Corporate</title>
+    <title data-translate="corporateTitle">@webhookos_bot - Corporate Use</title>
 </head>
 
 <body allowfullscreen="allowfullscreen" jstcache="0" contenteditable="false">
     <header class="header">
-        <div class="logo"><a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a></div>
+        <div class="header-left">
+            <img src="../int.gif" alt="Logo" class="logo-img">
+            <div class="logo">
+                <a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a>
+                <span class="logo-subtitle" data-translate="botDescription">Corporate Community Tracker</span>
+            </div>
+        </div>
         <nav>
-            <a href="../index.html" class="nav-link">Home</a>
-            <a href="#corporate-intro" class="nav-link active">Intro</a>
-            <a href="#corporate-add" class="nav-link">Add Group</a>
-            <a href="#corporate-features" class="nav-link">Features</a>
-            <a href="#corporate-start" class="nav-link">Join</a>
+            <a href="../index.html" class="nav-link" data-translate="home">Home</a>
+            <a href="#corporate-intro" class="nav-link active" data-translate="intro">Intro</a>
+            <a href="#corporate-add" class="nav-link" data-translate="addGroup">Add Group</a>
+            <a href="#corporate-features" class="nav-link" data-translate="features">Features</a>
+            <a href="#corporate-start" class="nav-link" data-translate="join">Join</a>
         </nav>
+
+        <div class="header-controls">
+            <div class="lang-switch">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
+
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider">
+                        <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3zm0-2c.28 0 .5-.22.5-.5v-3c0-.28-.22-.5-.5-.5s-.5.22-.5.5v3c0 .28.22.5.5.5zm0 14c-.28 0-.5.22-.5.5v3c0 .28.22.5.5.5s.5-.22.5-.5v-3c0-.28-.22-.5-.5-.5zm8.5-7h3c.28 0 .5-.22.5-.5s-.22-.5-.5-.5h-3c-.28 0-.5.22-.5.5s.22.5.5.5zm-17 0h3c.28 0 .5-.22.5-.5s-.22-.5-.5-.5h-3c-.28 0-.5.22-.5.5s.22.5.5.5z"/>
+                        </svg>
+                        <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 3c.28 0 .5-.22.5-.5v-2c0-.28-.22-.5-.5-.5s-.5.22-.5.5v2c0 .28.22.5.5.5zm0 18c-.28 0-.5.22-.5.5v2c0 .28.22.5.5.5s.5-.22.5-.5v-2c0-.28-.22-.5-.5-.5zm8.5-12h2c.28 0 .5-.22.5-.5s-.22-.5-.5-.5h-2c-.28 0-.5.22-.5.5s.22.5.5.5zm-17 0h2c.28 0 .5-.22.5-.5s-.22-.5-.5-.5h-2c-.28 0-.5.22-.5.5s.22.5.5.5z"/>
+                        </svg>
+                    </div>
+                </label>
+            </div>
+        </div>
     </header>
 
     <div class="ticker">
@@ -151,133 +185,107 @@
             <div class="content">
                 <div class="text-block">
                     <h2 class="glass-text"><a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a></h2>
-                    <p class="glass-text subtext">
+                    <p class="glass-text subtext" data-translate="corporateTracker">
                         Corporate <span class="neon-highlight">tracker</span> for your communities.
                     </p>
-                    <p class="glass-text desc">
+                    <p class="glass-text desc" data-translate="welcomeCorpText">
                         Welcome to <a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a>, your
                         ultimate tool for managing corporate communities with ease. Designed to streamline your
                         workflow, this bot allows you to promote and track your <span
-                            class="neon-highlight">teams</span>, <span class="neon-highlight">groups</span>, and <span
-                            class="neon-highlight">organizations</span> with just <span class="neon-highlight">two
-                            taps</span>. Whether you're overseeing multiple departments, organizing events, or managing
+                            class="neon-highlight" data-translate="teams">teams</span>, <span class="neon-highlight" data-translate="groups">groups</span>, and <span
+                            class="neon-highlight" data-translate="organizations">organizations</span> with just <span class="neon-highlight" data-translate="twoTapsControl">two taps</span>. Whether you're overseeing multiple departments, organizing events, or managing
                         partnerships, our bot provides a seamless experience tailored to your corporate needs. Get
                         real-time updates, detailed analytics, and a ticket system to keep everything under control all
                         from with in Telegram!
                     </p>
                 </div>
-                <img src="../int.gif" alt="Corporate Intro" class="interactive-img" loading="lazy">
+                <div class="interactive-img-container">
+                    <img src="../int.gif" alt="Corporate Intro" class="interactive-img" loading="lazy">
+                </div>
             </div>
         </section>
 
         <section class="slide" id="corporate-add">
             <div class="content">
                 <div class="text-block">
-                    <h2 class="glass-text">Add Your Group</h2>
+                    <h2 class="glass-text" data-translate="addYourGroup">Add Your Group</h2>
                     <p class="glass-text subtext">
-                        Simple steps to <span class="neon-highlight">track your community</span>.
+                        Simple steps to <span class="neon-highlight" data-translate="trackCommunity">track your community</span>.
                     </p>
                     <div class="steps-slider">
                         <div class="step-item active">
                             <p class="glass-text desc">
-                                <span class="neon-highlight">Step 1: Add the Bot</span><br>
-                                To begin, invite <span class="neon-highlight"><a href="https://t.me/webhookos_bot"
-                                    class="bot-link">@webhookos_bot</a></span> to your group, community, or channel. Simply
-                                open your Telegram, search for the bot, and use the "Add to Group" option. Whether it’s
-                                a private team chat, a public community, or a corporate channel, the bot integrates
-                                effortlessly. Once added, it will instantly recognize its new environment and prepare to
-                                assist you with tracking and management tasks.
+                                <span class="neon-highlight" data-translate="step1Title">Step 1: Add the Bot</span><br>
+                                <span data-translate="step1Text">To begin, invite @webhookos_bot to your group...</span>
                             </p>
                         </div>
                         <div class="step-item">
                             <p class="glass-text desc">
-                                <span class="neon-highlight">Step 2: Auto-Registration</span><br>
-                                After adding the bot, it automatically registers your group in the "Groups" section of
-                                its interface. No manual setup is needed <span class="neon-highlight"><a href="https://t.me/webhookos_bot"
-                                    class="bot-link">@webhookos_bot</a></span> detects the group’s details, such as its name,
-                                type (public or private), and member count. This step ensures that your corporate
-                                community is immediately linked to your bot profile, ready for monitoring and analytics
-                                without any extra effort on your part.
+                                <span class="neon-highlight" data-translate="step2Title">Step 2: Auto-Registration</span><br>
+                                <span data-translate="step2Text">After adding the bot, it automatically registers...</span>
                             </p>
                         </div>
                         <div class="step-item">
                             <p class="glass-text desc">
-                                <span class="neon-highlight">Step 3: Start Managing</span><br>
-                                With your group added and registered, you’re ready to manage it! Access the bot’s
-                                features like real-time updates, ticket management, and analytics directly from
-                                Telegram. Use simple commands to view group activity, approve join requests, or analyze
-                                performance metrics. <span class="neon-highlight"><a href="https://t.me/webhookos_bot"
-                                    class="bot-link">@webhookos_bot</a></span> makes it easy to keep everything organized,
-                                saving you time and effort while you focus on growing your corporate presence.
+                                <span class="neon-highlight" data-translate="step3Title">Step 3: Start Managing</span><br>
+                                <span data-translate="step3Text">With your group added and registered...</span>
                             </p>
                         </div>
                     </div>
                     <div class="slider-nav">
-                        <button class="slider-btn prev">◄</button>
-                        <button class="slider-btn next">►</button>
+                        <button class="slider-btn prev" data-translate="prev">◄</button>
+                        <button class="slider-btn next" data-translate="next">►</button>
                     </div>
                 </div>
-                <img src="../1.gif" alt="Add Group" class="interactive-img" loading="lazy">
+                <div class="interactive-img-container">
+                    <img src="../1.gif" alt="Add Group" class="interactive-img" loading="lazy">
+                </div>
             </div>
 
             <div class="instructions">
-                <h3>How to Use:</h3>
-                <p>1. Go to your group "settings".<br>2. Tap "Add members".<br>3. Сlick on the plus to add @webhookos_bot!</p>
+                <h3 data-translate="howToUse">How to Use:</h3>
+                <p data-translate="addInstructions">1. Go to your group "settings".<br>2. Tap "Add members".<br>3. Click on the plus to add @webhookos_bot!</p>
             </div>
         </section>
 
         <section class="slide" id="corporate-features">
             <div class="content">
                 <div class="text-block">
-                    <h2 class="glass-text">Features</h2>
-                    <p class="glass-text subtext">
+                    <h2 class="glass-text" data-translate="featuresTitle">Features</h2>
+                    <p class="glass-text subtext" data-translate="unlockTools">
                         Unlock powerful tools with <span class="neon-highlight">@webhookos_bot</span>!
                     </p>
                     <div class="feature-slider">
                         <div class="feature-item active">
                             <p class="glass-text desc">
-                                <span class="neon-highlight">Monitoring</span><br>
-                                Keep a close eye on your corporate <span class="neon-highlight">groups</span> and <span
-                                    class="neon-highlight">teams</span> with automatic tracking. <a
-                                    href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a> monitors
-                                activity in real-time, providing updates on member joins, post views, and group status
-                                changes. Whether you’re managing a single team or multiple departments, this feature
-                                ensures you’re always informed about what’s happening without needing to check manually.
-                                Stay proactive and responsive with minimal effort!
+                                <span class="neon-highlight" data-translate="monitoringTitle">Monitoring</span><br>
+                                <span data-translate="monitoringText">Keep a close eye on your corporate groups...</span>
                             </p>
-                            <button class="tg-btn show-btn" data-show="groups">Show</button>
+                            <button class="tg-btn show-btn" data-show="groups" data-translate="show">Show</button>
                         </div>
                         <div class="feature-item">
                             <p class="glass-text desc">
-                                <span class="neon-highlight">Tickets</span><br>
-                                Streamline membership management with our intuitive <span class="neon-highlight">ticket
-                                    system</span>. When someone requests to join your group, <a
-                                    href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a> creates a
-                                ticket with details like the user’s ID, join time, and expiration. You can approve,
-                                reject, or close these requests directly from Telegram, keeping your corporate community
-                                secure and organized. Perfect for managing large teams or exclusive partnerships!
+                                <span class="neon-highlight" data-translate="ticketsTitle">Tickets</span><br>
+                                <span data-translate="ticketsText">Streamline membership management...</span>
                             </p>
-                            <button class="tg-btn show-btn" data-show="tickets">Show</button>
+                            <button class="tg-btn show-btn" data-show="tickets" data-translate="show">Show</button>
                         </div>
                         <div class="feature-item">
                             <p class="glass-text desc">
-                                <span class="neon-highlight">Analytics</span><br>
-                                Gain valuable <span class="neon-highlight">insights</span> into your group’s performance
-                                with detailed analytics. <a href="https://t.me/webhookos_bot"
-                                    class="bot-link">@webhookos_bot</a> tracks metrics like join rates, post views,
-                                member activity, and more, giving you a clear picture of your community’s health. Use
-                                this data to optimize strategies, measure engagement, and plan growth—all from within
-                                Telegram. Turn raw numbers into actionable decisions with ease!
+                                <span class="neon-highlight" data-translate="analyticsTitle">Analytics</span><br>
+                                <span data-translate="analyticsText">Gain valuable insights...</span>
                             </p>
-                            <button class="tg-btn show-btn" data-show="analytics">Show</button>
+                            <button class="tg-btn show-btn" data-show="analytics" data-translate="show">Show</button>
                         </div>
                     </div>
                     <div class="slider-nav">
-                        <button class="slider-btn prev">◄</button>
-                        <button class="slider-btn next">►</button>
+                        <button class="slider-btn prev" data-translate="prev">◄</button>
+                        <button class="slider-btn next" data-translate="next">►</button>
                     </div>
                 </div>
-                <img src="../2.gif" alt="Features" class="interactive-img" loading="lazy">
+                <div class="interactive-img-container">
+                    <img src="../2.gif" alt="Features" class="interactive-img" loading="lazy">
+                </div>
             </div>
         </section>
 
@@ -285,26 +293,21 @@
             <div class="content">
                 <div class="text-block">
                     <h2 class="glass-text"><a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a></h2>
-                    <p class="glass-text subtext">
+                    <p class="glass-text subtext" data-translate="startWithCommand">
                         Start with <span class="neon-highlight">/start</span> and take control!
                     </p>
-                    <p class="glass-text desc">
-                        Ready to revolutionize how you manage your corporate <span
-                            class="neon-highlight">communities</span>? Join <a href="https://t.me/webhookos_bot"
-                            class="bot-link">@webhookos_bot</a> today and unlock a suite of tools designed for
-                        efficiency. From tracking team activity to analyzing performance, this bot simplifies every
-                        aspect of corporate community management. Click below to start with a single command <span
-                            class="neon-highlight">/start</span> and experience the power of automation in Telegram.
-                        Your corporate journey begins here!
+                    <p class="glass-text desc" data-translate="readyToRevolutionize">
+                        Ready to revolutionize how you manage your corporate communities?
                     </p>
-                    <a href="https://t.me/webhookos_bot" class="tg-btn join-btn">Join Now<img src="../int.gif"
-                            alt="Bot Icon" class="btn-icon"></a>
+                    <a href="https://t.me/webhookos_bot" class="tg-btn join-btn" data-translate="joinNow">Join Now<img src="../int.gif" alt="Bot Icon" class="btn-icon"></a>
                     <div class="uptime">
-                        <p class="glass-text">Uptime since March 1, 2025:</p>
+                        <p class="glass-text" data-translate="uptimeSince">Uptime since March 1, 2025:</p>
                         <div class="counter" id="uptime-counter"></div>
                     </div>
                 </div>
-                <img src="../0.gif" alt="Start" class="interactive-img" loading="lazy">
+                <div class="interactive-img-container">
+                    <img src="../0.gif" alt="Start" class="interactive-img" loading="lazy">
+                </div>
             </div>
         </section>
     </div>
@@ -314,9 +317,10 @@
     </div>
 
     <footer class="footer">
-        <p>© 2025 <a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a> | Made with ❤️</p>
+        <p>© 2025 <a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a> | <span data-translate="madeWith">Made with ❤️</span></p>
     </footer>
 
+    <script src="../translations.js"></script>
     <script src="../script.js"></script>
     <script src="../serv.js"></script>
     <script src="script.js"></script>

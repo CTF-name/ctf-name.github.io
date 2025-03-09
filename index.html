@@ -38,12 +38,7 @@
     <meta name="theme-color" content="#1e3c72">
     
     <!-- Защита от XSS с помощью Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="
-            img-src 'self' data:;
-            object-src 'none';
-            frame-ancestors 'none';
-            base-uri 'self';
-        ">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; style-src 'self' https: 'unsafe-inline'; script-src 'self' https: 'unsafe-inline' 'unsafe-eval'; img-src 'self' data: https:; font-src 'self' https: data:;">
 
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -64,7 +59,8 @@
     <link rel="manifest" href="manifest.json">
     
     <!-- Yandex.Metrika -->
-    <script async defer src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script async src="translations.js"></script>
+    <script async src="https://mc.yandex.ru/metrika/tag.js"></script>
     <script>window.yaContextCb = window.yaContextCb || [];</script>
     <link rel="preconnect" href="https://yastatic.net">
     <link rel="preconnect" href="https://avatars.mds.yandex.net">
@@ -90,13 +86,38 @@
 
 <body>
     <header class="header">
-        <div class="logo"><a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a></div>
-        <nav>
-            <a href="#intro" class="nav-link active">Home</a>
-            <a href="personal" class="nav-link">Personal</a>
-            <a href="corporate" class="nav-link">Corporate</a>
-            <a href="#start" class="nav-link">END</a>
+        <div class="header-left">
+            <img src="int.gif" alt="Logo" class="logo-img">
+            <div class="logo">
+                <a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a>
+                <span class="logo-subtitle">Corporate Community Tracker</span>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <a href="#intro" class="nav-link active" data-translate="home">Home</a>
+            <a href="personal" class="nav-link" data-translate="personal">Personal</a>
+            <a href="corporate" class="nav-link" data-translate="corporate">Corporate</a>
+            <a href="#start" class="nav-link" data-translate="end">END</a>
         </nav>
+        <div class="header-controls">
+            <div class="lang-switch">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider">
+                        <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3zm0-2c.28 0 .5-.22.5-.5v-3c0-.28-.22-.5-.5-.5s-.5.22-.5.5v3c0 .28.22.5.5.5zm0 14c-.28 0-.5.22-.5.5v3c0 .28.22.5.5.5s.5-.22.5-.5v-3c0-.28-.22-.5-.5-.5zm8.5-7h3c.28 0 .5-.22.5-.5s-.22-.5-.5-.5h-3c-.28 0-.5.22-.5.5s.22.5.5.5zm-17 0h3c.28 0 .5-.22.5-.5s-.22-.5-.5-.5h-3c-.28 0-.5.22-.5.5s.22.5.5.5z"/>
+                        </svg>
+                        <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 3c.28 0 .5-.22.5-.5v-2c0-.28-.22-.5-.5-.5s-.5.22-.5.5v2c0 .28.22.5.5.5zm0 18c-.28 0-.5.22-.5.5v2c0 .28.22.5.5.5s.5-.22.5-.5v-2c0-.28-.22-.5-.5-.5zm8.5-12h2c.28 0 .5-.22.5-.5s-.22-.5-.5-.5h-2c-.28 0-.5.22-.5.5s.22.5.5.5zm-17 0h2c.28 0 .5-.22.5-.5s-.22-.5-.5-.5h-2c-.28 0-.5.22-.5.5s.22.5.5.5z"/>
+                        </svg>
+                    </div>
+                </label>
+            </div>
+        </div>
     </header>
 
     <div class="ticker">
@@ -162,40 +183,55 @@
         <section class="slide" id="intro">
             <div class="content">
                 <div class="text-block">
-                    <span class="neon-highlight"><h1 class="glass-text"><a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a></h1></span>
-                    <p class="glass-text subtext">
+                    <h1 class="glass-text" data-translate="welcomeTitle">@webhookos_bot</h1>
+                    <p class="glass-text subtext" data-translate="twoTaps">
                         <span class="neon-highlight">Two taps</span> to find your perfect match.
                     </p>
-                    <p class="glass-text desc">
+                    <p class="glass-text desc" data-translate="botDescription">
                         Bot for promoting and searching your
-                        <span class="neon-highlight">communities</span> with sorting, tickets, and analytics.
+                        <span class="neon-highlight" data-translate="communities">communities</span> 
+                        with <span class="neon-highlight" data-translate="sorting">sorting</span>, 
+                        <span class="neon-highlight" data-translate="tickets">tickets</span>, and 
+                        <span class="neon-highlight" data-translate="analytics">analytics</span>.
                     </p>
-                    <button class="glow-btn start-btn">Get Started</button>
+                    <button class="glow-btn start-btn" data-translate="getStarted">Get Started</button>
                 </div>
-                <img src="int.gif" alt="Bot Intro" class="interactive-img" loading="lazy">
+                <div class="interactive-img-container">
+                    <img src="int.gif" alt="Bot Intro" class="interactive-img" loading="lazy">
+                </div>
             </div>
         </section>
 
         <section class="slide" id="start">
             <div class="content">
                 <div class="text-block">
-                    <h2 class="glass-text">Get Started</h2>
+                    <h2 class="glass-text" data-translate="getStarted">Get Started</h2>
                     <p class="glass-text subtext">
-                        Join <a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a>
-                        with <span class="neon-highlight">/start</span> now!
+                        <span data-translate="startCommand">Join</span> 
+                        <a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a>
+                        <span data-translate="withCommand">with</span> 
+                        <span class="neon-highlight">/start</span> 
+                        <span data-translate="now">now</span>!
                     </p>
                     <p class="glass-text desc">
-                        Explore <span class="neon-highlight">personal</span> or
-                        <span class="neon-highlight">corporate</span> features tailored for you.
+                        <span data-translate="explore">Explore</span> 
+                        <span class="neon-highlight" data-translate="personal">personal</span> 
+                        <span data-translate="or">or</span>
+                        <span class="neon-highlight" data-translate="corporate">corporate</span> 
+                        <span data-translate="features">features</span>.
                     </p>
-                    <a href="https://t.me/webhookos_bot" class="tg-btn join-btn">Join Now<img src="int.gif"
-                            alt="Bot Icon" class="btn-icon"></a>
+                    <a href="https://t.me/webhookos_bot" class="tg-btn join-btn">
+                        <span data-translate="joinNow">Join Now</span>
+                        <img src="int.gif" alt="Bot Icon" class="btn-icon">
+                    </a>
                     <div class="uptime">
-                        <p class="glass-text">Uptime since March 1, 2025:</p>
+                        <p class="glass-text" data-translate="uptimeSince">Uptime since March 1, 2025:</p>
                         <div class="counter" id="uptime-counter"></div>
                     </div>
                 </div>
-                <img src="0.gif" alt="Start" class="interactive-img" loading="lazy">
+                <div class="interactive-img-container">
+                    <img src="0.gif" alt="Start" class="interactive-img" loading="lazy">
+                </div>
             </div>
         </section>
     </div>

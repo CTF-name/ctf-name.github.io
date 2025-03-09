@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Основные мета-теги -->
+    <meta name="description" content="О проекте @webhookos_bot - Узнайте больше о нашем корпоративном боте для Telegram">
+    <meta name="keywords" content="webhookos_bot, о проекте, функции бота, команда разработчиков, telegram bot">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="О проекте @webhookos_bot">
+    <meta property="og:description" content="Подробная информация о функциях и возможностях @webhookos_bot">
+    <meta property="og:image" content="https://your-domain.com/int.gif">
+    <meta property="og:url" content="https://your-domain.com/about.html">
+    
+    <title>О проекте @webhookos_bot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Дополнительные стили для about.html -->
+    <style>
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(var(--glass-blur));
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 4px 15px var(--shadow-color),
+                inset 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 45%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0.1) 55%,
+                transparent 100%
+            );
+            transition: transform 0.6s ease;
+            pointer-events: none;
+        }
+        
+        .feature-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 40px var(--shadow-color),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--neon-color);
+        }
+        
+        .tutorial-slider {
+            position: relative;
+            height: 500px;
+            margin: 4rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(var(--glass-blur));
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .tutorial-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(0.9);
+        }
+        
+        .tutorial-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .tutorial-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(var(--glass-blur));
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: 
+                0 4px 15px var(--shadow-color),
+                inset 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+        
+        .team-section {
+            padding: 4rem 2rem;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .team-member {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(var(--glass-blur));
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            box-shadow: 
+                0 4px 15px var(--shadow-color),
+                inset 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+        
+        .team-member:hover {
+            transform: 
+                perspective(1000px)
+                rotateX(5deg)
+                rotateY(5deg)
+                scale(1.05);
+            box-shadow: 
+                0 20px 40px var(--shadow-color),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        .member-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            object-fit: cover;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+        
+        .member-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px var(--shadow-color);
+        }
+        
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--text-color);
+            opacity: 0.5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-dot:hover {
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+        
+        .slider-dot.active {
+            opacity: 1;
+            background: var(--neon-color);
+            box-shadow: 0 0 10px var(--neon-color);
+        }
+        
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tutorial-slider {
+                height: 400px;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"><a href="index.html" class="bot-link">@webhookos_bot</a></div>
+        <nav>
+            <a href="index.html" class="nav-link">Главная</a>
+            <a href="#features" class="nav-link">Возможности</a>
+            <a href="#tutorial" class="nav-link">Обучение</a>
+            <a href="#team" class="nav-link">Команда</a>
+        </nav>
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <div class="slider">
+                    <svg class="sun" viewBox="0 0 24 24"><path d="M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3z"/></svg>
+                    <svg class="moon" viewBox="0 0 24 24"><path d="M12 3c.28 0 .5-.22.5-.5v-1c0-.28-.22-.5-.5-.5s-.5.22-.5.5v1c0 .28.22.5.5.5z"/></svg>
+                </div>
+            </label>
+        </div>
+    </header>
+
+    <main class="timeline">
+        <section id="features" class="slide">
+            <h2 class="glass-text">Возможности бота</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="glass-text">Аналитика</h3>
+                    <p>Подробная статистика по вашим группам и каналам</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="glass-text">Таргетинг</h3>
+                    <p>Точное определение целевой аудитории</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="glass-text">Автоматизация</h3>
+                    <p>Автоматическое управление контентом</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="glass-text">Безопасность</h3>
+                    <p>Защита от спама и нежелательного контента</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tutorial" class="slide">
+            <h2 class="glass-text">Как начать использовать бота</h2>
+            <div class="tutorial-slider">
+                <div class="tutorial-slide active">
+                    <div class="tutorial-content">
+                        <h3 class="glass-text">Шаг 1: Начало работы</h3>
+                        <p>Найдите @webhookos_bot в Telegram и нажмите Start</p>
+                        <img src="int.gif" alt="Start Bot" class="tutorial-image">
+                    </div>
+                </div>
+                <div class="tutorial-slide">
+                    <div class="tutorial-content">
+                        <h3 class="glass-text">Шаг 2: Настройка</h3>
+                        <p>Выберите тип аккаунта и настройте основные параметры</p>
+                        <img src="int.gif" alt="Setup" class="tutorial-image">
+                    </div>
+                </div>
+                <div class="tutorial-slide">
+                    <div class="tutorial-content">
+                        <h3 class="glass-text">Шаг 3: Управление</h3>
+                        <p>Начните управлять своими группами и каналами</p>
+                        <img src="int.gif" alt="Management" class="tutorial-image">
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <button class="slider-btn prev">Назад</button>
+                <button class="slider-btn next">Вперед</button>
+            </div>
+        </section>
+
+        <section id="team" class="slide">
+            <h2 class="glass-text">Наша команда</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="int.gif" alt="Team Member" class="member-avatar">
+                    <h3 class="glass-text">Роман</h3>
+                    <p>Основатель проекта</p>
+                    <a href="https://t.me/onlynet0" class="bot-link">@onlynet0</a>
+                </div>
+                <div class="team-member">
+                    <img src="int.gif" alt="Team Member" class="member-avatar">
+                    <h3 class="glass-text">Null-X</h3>
+                    <p>Ведущий разработчик</p>
+                    <a href="https://t.me/notevm" class="bot-link">@notevm</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 <a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a> | Made with ❤️</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
