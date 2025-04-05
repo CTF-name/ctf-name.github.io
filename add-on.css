@@ -1,0 +1,630 @@
+/* Основные переменные для тем */
+:root {
+    --primary-color: #1e3c72;
+    --secondary-color: #2a5298;
+    --text-color: #333;
+    --background-color: #f0f4f8;
+    --card-background: rgba(255, 255, 255, 0.85);
+    --highlight-color: rgba(255, 255, 255, 0.5);
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --border-color: rgba(255, 255, 255, 0.25);
+    --transition-speed: 0.3s;
+    --text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] {
+    --primary-color: #0a192f;
+    --secondary-color: #172a45;
+    --text-color: #e6f1ff;
+    --background-color: #0a192f;
+    --card-background: rgba(23, 42, 69, 0.9);
+    --highlight-color: rgba(255, 255, 255, 0.6);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --border-color: rgba(255, 255, 255, 0.35);
+    --text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Базовые стили */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    background: var(--background-color);
+    overflow-x: hidden;
+    position: relative;
+    transition: background var(--transition-speed) ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Параллакс фон */
+.parallax-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    z-index: -1;
+    overflow: hidden;
+    border-radius: 0 0 20px 20px;
+}
+
+.parallax-background::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    animation: floatBackground 20s ease-in-out infinite;
+}
+
+@keyframes floatBackground {
+    0% {
+        transform: translate(-25%, -25%) scale(1);
+    }
+
+    50% {
+        transform: translate(-20%, -20%) scale(1.05);
+    }
+
+    100% {
+        transform: translate(-25%, -25%) scale(1);
+    }
+}
+
+/* Шапка */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: clamp(8px, 1.5vw, 12px) clamp(10px, 2vw, 20px);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-background);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px var(--shadow-color);
+    border-radius: 0 0 15px 15px;
+    box-sizing: border-box;
+    height: clamp(40px, 8vw, 50px);
+    /* Фиксированная минимальная высота */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: clamp(5px, 1vw, 10px);
+    flex-shrink: 0;
+}
+
+.logo-img {
+    width: clamp(24px, 4vw, 32px);
+    height: clamp(24px, 4vw, 32px);
+    border-radius: 50%;
+    transition: transform var(--transition-speed) ease;
+}
+
+.logo-img:hover {
+    transform: rotate(360deg) scale(1.1);
+}
+
+.logo .bot-link {
+    font-size: clamp(1em, 2.5vw, 1.5em);
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform var(--transition-speed) ease, text-shadow var(--transition-speed) ease;
+}
+
+.logo .bot-link:hover {
+    transform: scale(1.05);
+    text-shadow: var(--text-shadow);
+}
+
+.logo-subtitle {
+    font-size: clamp(0.6em, 1.5vw, 0.8em);
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.main-nav {
+    display: flex;
+    gap: clamp(5px, 1vw, 15px);
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: clamp(0.8em, 2vw, 1em);
+    padding: clamp(4px, 1vw, 8px) clamp(6px, 1.5vw, 12px);
+    position: relative;
+    transition: all var(--transition-speed) ease;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--highlight-color);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--transition-speed) ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+
+.nav-link:hover {
+    color: var(--highlight-color);
+    transform: translateY(-1px);
+    text-shadow: var(--text-shadow);
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: clamp(5px, 1vw, 10px);
+    flex-shrink: 0;
+}
+
+.lang-switch {
+    display: flex;
+    gap: clamp(2px, 0.5vw, 5px);
+    padding: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+}
+
+.lang-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: clamp(4px, 1vw, 6px) clamp(6px, 1.5vw, 10px);
+    border-radius: 15px;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: clamp(0.7em, 1.5vw, 0.9em);
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+}
+
+.lang-btn:hover {
+    background: var(--highlight-color);
+    transform: scale(1.05);
+}
+
+.lang-btn.active {
+    background: var(--highlight-color);
+    color: var(--primary-color);
+}
+
+.theme-switch {
+    width: clamp(36px, 6vw, 50px);
+    height: clamp(18px, 3vw, 24px);
+    position: relative;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    width: clamp(12px, 2vw, 18px);
+    height: clamp(12px, 2vw, 18px);
+    left: 3px;
+    top: 3px;
+    background: var(--highlight-color);
+    border-radius: 50%;
+    transition: all var(--transition-speed) ease;
+}
+
+input:checked+.slider:before {
+    transform: translateX(clamp(18px, 4vw, 28px));
+}
+
+.slider .sun,
+.slider .moon {
+    position: absolute;
+    width: clamp(12px, 2vw, 16px);
+    height: clamp(12px, 2vw, 16px);
+    top: clamp(3px, 0.5vw, 4px);
+    fill: var(--text-color);
+    transition: opacity var(--transition-speed) ease;
+}
+
+.slider .sun {
+    left: clamp(4px, 0.8vw, 6px);
+    opacity: 1;
+}
+
+.slider .moon {
+    right: clamp(4px, 0.8vw, 6px);
+    opacity: 0;
+}
+
+input:checked+.slider .sun {
+    opacity: 0;
+}
+
+input:checked+.slider .moon {
+    opacity: 1;
+}
+
+/* Тикер */
+.ticker {
+    position: fixed;
+    top: clamp(40px, 8vw, 50px);
+    /* Следующая строка после шапки */
+    width: 100%;
+    padding: clamp(6px, 1vw, 10px) 0;
+    z-index: 999;
+    background: var(--card-background);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 2px 15px var(--shadow-color);
+    border-radius: 0 0 15px 15px;
+    height: clamp(24px, 5vw, 30px);
+    /* Минимальная высота */
+}
+
+.ticker-content {
+    display: inline-block;
+    white-space: nowrap;
+    animation: ticker 25s linear infinite;
+    font-size: clamp(0.8em, 2vw, 1em);
+    color: var(--text-color);
+    line-height: 1;
+}
+
+.ticker-content span {
+    margin: 0 clamp(10px, 2vw, 20px);
+}
+
+@keyframes ticker {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Таймлайн и карточки (без изменений) */
+.timeline {
+    padding: clamp(80px, 15vw, 120px) clamp(10px, 2vw, 20px) clamp(40px, 8vw, 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(20px, 4vw, 40px);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.slide {
+    width: 100%;
+    max-width: clamp(300px, 90vw, 1200px);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.slide.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content {
+    background: var(--card-background);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px var(--shadow-color);
+    padding: clamp(20px, 4vw, 40px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(15px, 3vw, 30px);
+    transition: transform var(--transition-speed) ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.content:hover {
+    transform: translateY(-5px);
+}
+
+.text-block {
+    padding: 0;
+}
+
+.glass-text {
+    color: var(--text-color);
+    text-shadow: var(--text-shadow);
+}
+
+h1.glass-text {
+    font-size: clamp(1.8em, 5vw, 2.5em);
+    margin-bottom: clamp(10px, 2vw, 20px);
+}
+
+h2.glass-text {
+    font-size: clamp(1.5em, 4vw, 2em);
+    margin-bottom: clamp(8px, 1.5vw, 15px);
+}
+
+h3.glass-text {
+    font-size: clamp(1.2em, 3vw, 1.5em);
+    margin-bottom: clamp(5px, 1vw, 10px);
+}
+
+p.glass-text {
+    font-size: clamp(1em, 3vw, 1.2em);
+    line-height: 1.6;
+}
+
+.feature-list,
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 45vw, 300px), 1fr));
+    gap: clamp(15px, 3vw, 20px);
+    margin-top: clamp(15px, 3vw, 20px);
+}
+
+.feature-list li {
+    background: rgba(255, 255, 255, 0.15);
+    padding: clamp(15px, 3vw, 20px);
+    border-radius: 15px;
+    transition: transform var(--transition-speed) ease;
+}
+
+.feature-list li:hover {
+    transform: scale(1.03);
+}
+
+.team-member {
+    background: rgba(255, 255, 255, 0.15);
+    padding: clamp(15px, 3vw, 20px);
+    border-radius: 15px;
+    text-align: center;
+    transition: transform var(--transition-speed) ease;
+}
+
+.team-member:hover {
+    transform: scale(1.03);
+}
+
+.member-avatar {
+    width: clamp(80px, 20vw, 120px);
+    height: clamp(80px, 20vw, 120px);
+    border-radius: 50%;
+    margin-bottom: clamp(10px, 2vw, 15px);
+}
+
+.bot-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: clamp(1em, 2.5vw, 1.2em);
+    transition: all var(--transition-speed) ease;
+}
+
+.bot-link:hover {
+    color: var(--highlight-color);
+    text-decoration: underline;
+}
+
+/* Tutorial Slider */
+.tutorial-slider {
+    position: relative;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: clamp(15px, 3vw, 20px);
+    overflow: hidden;
+}
+
+.tutorial-slide {
+    display: none;
+    text-align: center;
+}
+
+.tutorial-slide.active {
+    display: block;
+}
+
+.tutorial-content {
+    padding: clamp(15px, 3vw, 20px);
+}
+
+.tutorial-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: clamp(10px, 2vw, 15px);
+}
+
+/* Кнопки слайдера */
+.slider-nav {
+    display: flex;
+    justify-content: center;
+    gap: clamp(15px, 3vw, 20px);
+    margin-top: clamp(15px, 3vw, 20px);
+}
+
+.slider-btn {
+    padding: clamp(8px, 2vw, 10px) clamp(15px, 3vw, 20px);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 10px;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: clamp(0.9em, 2.5vw, 1em);
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+}
+
+.slider-btn:hover {
+    background: var(--highlight-color);
+    transform: scale(1.05);
+}
+
+/* Кнопка Telegram */
+.tg-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(5px, 1vw, 10px);
+    padding: clamp(10px, 2vw, 15px) clamp(15px, 3vw, 25px);
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: clamp(1em, 2.5vw, 1.2em);
+    transition: all var(--transition-speed) ease;
+}
+
+.tg-btn:hover {
+    background: var(--highlight-color);
+    transform: scale(1.05);
+}
+
+.btn-icon {
+    width: clamp(20px, 4vw, 30px);
+    height: clamp(20px, 4vw, 30px);
+    transition: transform var(--transition-speed) ease;
+}
+
+.tg-btn:hover .btn-icon {
+    transform: rotate(360deg);
+}
+
+/* Кнопка "Наверх" */
+.scroll-top-btn {
+    position: fixed;
+    bottom: clamp(15px, 3vw, 20px);
+    right: clamp(15px, 3vw, 20px);
+    width: clamp(40px, 8vw, 50px);
+    height: clamp(40px, 8vw, 50px);
+    background: var(--card-background);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-speed) ease;
+}
+
+.scroll-top-btn:hover {
+    background: var(--highlight-color);
+    transform: scale(1.1);
+}
+
+.scroll-top-btn svg {
+    width: clamp(20px, 4vw, 24px);
+    height: clamp(20px, 4vw, 24px);
+    fill: var(--text-color);
+}
+
+/* Футер */
+.footer {
+    padding: clamp(10px, 2vw, 20px);
+    text-align: center;
+    background: var(--card-background);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 -4px 20px var(--shadow-color);
+    border-radius: 20px 20px 0 0;
+    font-size: clamp(0.9em, 2.5vw, 1em);
+    margin-top: auto;
+}
+
+/* Адаптивность для шапки и тикера */
+@media (max-width: 768px) {
+    .header {
+        padding: clamp(6px, 1vw, 10px) clamp(8px, 1.5vw, 15px);
+    }
+
+    .main-nav {
+        gap: clamp(4px, 0.8vw, 10px);
+    }
+
+    .ticker {
+        top: clamp(34px, 7vw, 44px);
+    }
+
+    .timeline {
+        padding-top: clamp(60px, 12vw, 80px);
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: clamp(4px, 0.8vw, 8px) clamp(5px, 1vw, 10px);
+    }
+
+    .header-left {
+        gap: clamp(3px, 0.5vw, 5px);
+    }
+
+    .main-nav {
+        gap: clamp(3px, 0.5vw, 8px);
+    }
+
+    .header-controls {
+        gap: clamp(3px, 0.5vw, 5px);
+    }
+
+    .ticker {
+        top: clamp(28px, 6vw, 38px);
+    }
+
+    .timeline {
+        padding-top: clamp(50px, 10vw, 70px);
+    }
+}
+
+/* Кросс-браузерная совместимость */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}

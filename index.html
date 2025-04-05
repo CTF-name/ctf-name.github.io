@@ -2,108 +2,92 @@
 <html lang="en">
 
 <head>
-
     <!-- Установка кодировки и масштаба -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Мета-теги SEO для обоих языков -->
+
+    <!-- Мета-теги SEO для личного использования -->
     <meta name="description"
-        content="@webhookos_bot is your corporate tracker for managing communities, groups, and teams. Automate tasks with two taps, track analytics, and streamline workflows in Telegram.">
+        content="Explore your personal feed, manage group links, and invite friends with the @webhookos_bot.">
     <meta name="keywords"
-        content="webhookos_bot, corporate tracker, task management, community management, group tracking, team management, analytics, tickets, Telegram bot, productivity, automation, corporate tools, business management">
+        content="@webhookos_bot, personal feed, group management, referrals, Telegram bot, productivity, automation">
     <meta name="author" content="Null-X Roman @onlynet0 @notevm">
-    
+
     <!-- Open Graph для социальных сетей -->
-    <meta property="og:title" content="@webhookos_bot - Corporate Community Tracker">
+    <meta property="og:title" content="@webhookos_bot - Personal Use">
     <meta property="og:description"
-        content="Manage your corporate communities with @webhookos_bot. Automate tracking, analyze performance, and streamline workflows in Telegram with just two taps.">
-    <meta property="og:image" content="int.gif">
+        content="Your one-stop solution for managing personal feeds, folders, and referrals.">
+    <meta property="og:image" content="../int.gif">
     <meta property="og:url" content="https://t.me/webhookos_bot">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="@webhookos_bot">
-    
+
     <!-- Мета-теги для Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@webhookos_bot - Corporate Community Tracker">
-    <meta name="twitter:description"
-        content="Manage your corporate communities with @webhookos_bot. Automate tracking, analyze performance, and streamline workflows in Telegram with just two taps.">
-    <meta name="twitter:image" content="int.gif">
+    <meta name="twitter:title" content="@webhookos_bot - Personal Use">
+    <meta name="twitter:description" content="Manage your personal feed, folders, and referrals easily with @webhookos_bot.">
+    <meta name="twitter:image" content="../int.gif">
     <meta name="twitter:url" content="https://t.me/webhookos_bot">
-    
+
     <!-- Robot Follow -->
     <meta name="robots" content="index, follow">
     <meta name="language" content="en">
     <meta name="rating" content="General">
     <meta name="theme-color" content="#1e3c72">
-    
-    <!-- Защита от XSS с помощью Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; style-src 'self' https: 'unsafe-inline'; script-src 'self' https: 'unsafe-inline' 'unsafe-eval'; img-src 'self' data: https:; font-src 'self' https: data:;">
 
+    <!-- Защита от XSS с помощью Content Security Policy (CSP) -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+
+    <!-- Защита от кликджекинга -->
+    <meta http-equiv="Content-Security-Policy" content="
+            img-src 'self' data:;
+            object-src 'none';
+            frame-ancestors 'none';
+            base-uri 'self';
+            form-action 'self';
+        ">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
-    <meta http-equiv="Access-Control-Allow-Origin" content="self">
-    <meta http-equiv="Permissions-Policy"
-        content="web-share=(), midi=(), gyroscope=(), fullscreen=(), document-domain=(), notifications=(self), popups=(self)">
-    <meta name="referrer" content="no-referrer">
-    <meta name="HandheldFriendly" content="True">
-    
+
     <!-- Иконки для мобильных устройств -->
-    <link rel="icon" href="int.gif">
-    <link rel="apple-touch-icon" href="int.gif">
-    <link rel="icon" sizes="192x192" href="int.gif">
-    <link rel="icon" sizes="512x512" href="int.gif">
-    
-    <!-- Манифест для PWA -->
-    <link rel="manifest" href="manifest.json">
-    
-    <!-- Yandex.Metrika -->
-    <script async src="translations.js"></script>
-    <script async src="https://mc.yandex.ru/metrika/tag.js"></script>
-    <script>window.yaContextCb = window.yaContextCb || [];</script>
-    <link rel="preconnect" href="https://yastatic.net">
-    <link rel="preconnect" href="https://avatars.mds.yandex.net">
-    <link rel="preconnect" href="https://mc.yandex.ru">
-    <link rel="preconnect" href="https://ads.adfox.ru">
+    <link rel="icon" href="../int.gif">
+    <link rel="apple-touch-icon" href="../int.gif">
+    <link rel="icon" sizes="192x192" href="../int.gif">
+    <link rel="icon" sizes="512x512" href="../int.gif">
 
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html" height="0" width="0" style="display:none;visibility:hidden"
-            id="tag-manager">
-        </iframe>
-    </noscript>
-
-    <title>@webhookos_bot - Home</title>
+    <!-- Подключение шрифтов -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 
-    <!-- Подключение стилей и скриптов -->
-    <link rel="stylesheet" href="styles.css" loading="lazy">
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="../styles.css" loading="lazy">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <title data-translate="personalTitle">@webhookos_bot - Personal Use</title>
 </head>
 
 <body>
     <header class="header">
         <div class="header-left">
-            <img src="int.gif" alt="Logo" class="logo-img">
+            <img src="../int.gif" alt="Logo" class="logo-img">
             <div class="logo">
                 <a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a>
-                <span class="logo-subtitle">Corporate Community Tracker</span>
+                <span class="logo-subtitle" data-translate="botDescription">Corporate Community Tracker</span>
             </div>
         </div>
-        <nav class="main-nav">
-            <a href="#intro" class="nav-link active" data-translate="home">Home</a>
-            <a href="personal" class="nav-link" data-translate="personal">Personal</a>
-            <a href="corporate" class="nav-link" data-translate="corporate">Corporate</a>
-            <a href="#start" class="nav-link" data-translate="end">END</a>
+        <nav>
+            <a href="../index.html" class="nav-link" data-translate="home">Home</a>
+            <a href="#personal-feed" class="nav-link active" data-translate="feed">Feed</a>
+            <a href="#personal-folders" class="nav-link" data-translate="folders">Folders</a>
+            <a href="#personal-referrals" class="nav-link" data-translate="referrals">Referrals</a>
         </nav>
+
         <div class="header-controls">
             <div class="lang-switch">
                 <button class="lang-btn active" data-lang="en">EN</button>
                 <button class="lang-btn" data-lang="ru">RU</button>
             </div>
+
             <div class="theme-switch-wrapper">
                 <label class="theme-switch" for="checkbox">
                     <input type="checkbox" id="checkbox" />
@@ -120,118 +104,73 @@
         </div>
     </header>
 
-    <div class="ticker">
-        <div class="ticker-content">
-            <span>Organizers</span>
-            <span>Admin</span>
-            <span>Feed</span>
-            <span>Order</span>
-            <span>Users</span>
-            <span>Groups</span>
-            <span>Doc</span>
-            <span>Owner</span>
-            <span>Learning</span>
-            <span>Transactions</span>
-            <span>Product Management</span> <!-- Управление продуктами -->
-            <span>Product Development</span> <!-- Разработка продуктов -->
-            <span>Product Design</span> <!-- Дизайн продуктов -->
-            <span>Product Launch</span> <!-- Запуск продуктов -->
-            <span>Product Roadmap</span> <!-- Дорожная карта продукта -->
-            <span>Product Feedback</span> <!-- Обратная связь по продуктам -->
-            <span>Product Marketing</span> <!-- Маркетинг продуктов -->
-            <span>Sales Strategy</span> <!-- Стратегия продаж -->
-            <span>Pricing Strategy</span> <!-- Стратегия ценообразования -->
-            <span>Inventory Management</span> <!-- Управление запасами -->
-            <span>Promotions</span> <!-- Акции и скидки -->
-            <span>Customer Support</span> <!-- Поддержка клиентов -->
-            <span>Customer Feedback</span> <!-- Обратная связь от клиентов -->
-            <span>Analytics</span> <!-- Аналитика и отчёты -->
-            <span>Market Research</span> <!-- Исследование рынка -->
-            <span>Competitor Analysis</span> <!-- Анализ конкурентов -->
-            <span>Brand Positioning</span> <!-- Позиционирование бренда -->
-            <span>Target Audience</span> <!-- Целевая аудитория -->
-            <span>Sales Funnel</span> <!-- Воронка продаж -->
-            <span>Lead Generation</span> <!-- Генерация лидов -->
-            <span>Customer Journey Mapping</span> <!-- Картирование пути клиента -->
-            <span>Webhooks</span> <!-- Вебхуки для интеграций -->
-            <span>APIs</span> <!-- API для взаимодействия с другими сервисами -->
-            <span>Documentation</span> <!-- Документация для разработчиков -->
-            <span>Testing and QA</span> <!-- Тестирование и контроль качества -->
-            <span>Deployment</span> <!-- Развертывание приложений -->
-            <span>Content Management</span> <!-- Управление контентом -->
-            <span>SEO Optimization</span> <!-- Оптимизация для поисковых систем -->
-            <span>Social Media Management</span> <!-- Управление социальными сетями -->
-            <span>Branding</span> <!-- Брендинг и имидж компании -->
-            <span>Training Programs</span> <!-- Программы обучения -->
-            <span>Customer Relationship Management</span> <!-- Управление взаимоотношениями с клиентами -->
-            <span>Risk Management</span> <!-- Управление рисками -->
-            <span>Compliance Audits</span> <!-- Аудиты соответствия -->
-            <span>Networking Opportunities</span> <!-- Возможности для сетевого взаимодействия -->
-            <span>Partnerships</span> <!-- Партнёрства и сотрудничество -->
-            <span>Updates and Releases</span> <!-- Обновления и релизы -->
-            <span>Feedback Loop</span> <!-- Цикл обратной связи -->
-            <span>Performance Metrics</span> <!-- Метрики производительности -->
-        </div>
-    </div>
-
-
     <div class="timeline">
         <div class="scroll-indicator">
             <div class="progress-line"></div>
         </div>
 
-        <section class="slide" id="intro">
+        <section class="slide" id="personal-feed">
             <div class="content">
                 <div class="text-block">
-                    <h1 class="glass-text" data-translate="welcomeTitle">@webhookos_bot</h1>
-                    <p class="glass-text subtext" data-translate="twoTaps">
-                        <span class="neon-highlight">Two taps</span> to find your perfect match.
+                    <h2 class="glass-text" data-translate="personalFeed">Your Personal Feed</h2>
+                    <p class="glass-text subtext" data-translate="feedSubtext">
+                        Explore <span class="highlight">tailored recs</span>
+                        with a single tap!
                     </p>
-                    <p class="glass-text desc" data-translate="botDescription">
-                        Bot for promoting and searching your
-                        <span class="neon-highlight" data-translate="communities">communities</span> 
-                        with <span class="neon-highlight" data-translate="sorting">sorting</span>, 
-                        <span class="neon-highlight" data-translate="tickets">tickets</span>, and 
-                        <span class="neon-highlight" data-translate="analytics">analytics</span>.
-                    </p>
-                    <button class="glow-btn start-btn" data-translate="getStarted">Get Started</button>
+                    <button class="tg-btn show-btn" data-show="feed" data-translate="show">Show</button>
                 </div>
                 <div class="interactive-img-container">
-                    <img src="int.gif" alt="Bot Intro" class="interactive-img" loading="lazy">
+                    <div class="card feed-card">
+                        <img src="../feed.gif" alt="Feed-card" class="interactive-img" loading="lazy">
+                    </div>
                 </div>
+            </div>
+            <div class="instructions">
+                <h3 data-translate="howToUse">How to Use:</h3>
+                <p data-translate="feedInstructions">1. Tap "Feed".<br>2. Swipe posts.<br>3. Follow or Like.</p>
             </div>
         </section>
 
-        <section class="slide" id="start">
+        <section class="slide" id="personal-folders">
             <div class="content">
                 <div class="text-block">
-                    <h2 class="glass-text" data-translate="getStarted">Get Started</h2>
-                    <p class="glass-text subtext">
-                        <span data-translate="startCommand">Join</span> 
-                        <a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a>
-                        <span data-translate="withCommand">with</span> 
-                        <span class="neon-highlight">/start</span> 
-                        <span data-translate="now">now</span>!
+                    <h2 class="glass-text" data-translate="yourFolders">Your Folders</h2>
+                    <p class="glass-text subtext" data-translate="foldersSubtext">
+                        Store <span class="highlight">group links</span>
+                        in one cozy place.
                     </p>
-                    <p class="glass-text desc">
-                        <span data-translate="explore">Explore</span> 
-                        <span class="neon-highlight" data-translate="personal">personal</span> 
-                        <span data-translate="or">or</span>
-                        <span class="neon-highlight" data-translate="corporate">corporate</span> 
-                        <span data-translate="features">features</span>.
-                    </p>
-                    <a href="https://t.me/webhookos_bot" class="tg-btn join-btn">
-                        <span data-translate="joinNow">Join Now</span>
-                        <img src="int.gif" alt="Bot Icon" class="btn-icon">
-                    </a>
-                    <div class="uptime">
-                        <p class="glass-text" data-translate="uptimeSince">Uptime since March 1, 2025:</p>
-                        <div class="counter" id="uptime-counter"></div>
-                    </div>
+                    <button class="tg-btn show-btn" data-show="groups" data-translate="show">Show</button>
                 </div>
                 <div class="interactive-img-container">
-                    <img src="0.gif" alt="Start" class="interactive-img" loading="lazy">
+                    <img src="../group.gif" alt="Folders" class="interactive-img" loading="lazy">
                 </div>
+            </div>
+            <div class="instructions">
+                <h3 data-translate="howToUse">How to Use:</h3>
+                <p data-translate="foldersInstructions">1. Join via "Follow".<br>2. Tap "Groups".<br>3. Links auto-saved.</p>
+            </div>
+        </section>
+
+        <section class="slide" id="personal-referrals">
+            <div class="content">
+                <div class="text-block">
+                    <h2 class="glass-text" data-translate="referralsTitle">Referrals</h2>
+                    <p class="glass-text subtext" data-translate="referralsSubtext">
+                        Invite friends, unlock <span class="highlight">more slots</span>!
+                    </p>
+                    <button class="tg-btn show-btn" data-show="referrals" data-translate="show">Show</button>
+                    <a href="../index.html" class="tg-btn next-btn" data-translate="finish">Finish</a>
+                </div>
+                <div class="interactive-img-container">
+                    <img src="../clap.gif" alt="Folders" class="interactive-img" loading="lazy">
+                </div>
+            </div>
+            <div class="instructions">
+                <h3 data-translate="howToUse">How to Use:</h3>
+                <p data-translate="referralsInstructions">1. Go "Settings".
+                    <br>2. Tap "Invite".
+                    <br>3. Share link!
+                </p>
             </div>
         </section>
     </div>
@@ -241,12 +180,13 @@
     </div>
 
     <footer class="footer">
-        <p>© 2025 <a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a> | Made with ❤️</p>
+        <p>© 2025 <a href="https://t.me/webhookos_bot" class="bot-link">@webhookos_bot</a> | <span data-translate="madeWith">Made with ❤️</span></p>
     </footer>
 
+    <script src="../translations.js"></script>
+    <script src="../script.js"></script>
+    <script src="../serv.js"></script>
     <script src="script.js"></script>
-    <script src="serv.js"></script>
-    <script src="index-script.js"></script>
 </body>
 
 </html>
