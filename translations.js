@@ -167,6 +167,7 @@ const translations = {
 
         corporateDesc: 'Оптимизируйте рабочие процессы команды и отслеживайте аналитику.',
         personalDesc: 'Управляйте своими личными сообществами и лентами с легкостью.',
+        choosePath: 'Выберите свой путь'
 
     },
     en: {
@@ -181,6 +182,7 @@ const translations = {
         
         corporateDesc: 'Streamline team workflows and track analytics.',
         personalDesc: 'Manage your personal communities and feeds with ease.',
+        choosePath: 'Choose Your Path',
 
         // Headers and subheaders
         welcomeTitle: '@webhookos_bot',
@@ -262,7 +264,7 @@ const translations = {
         branding: 'Branding',
         
         // Common elements
-        madeWith: 'Made with',
+        madeWith: 'Made with ❤️',
         theme: 'Theme',
         language: 'Language',
         copyright: '© 2025 @webhookos_bot | Made with ❤️',
