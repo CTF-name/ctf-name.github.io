@@ -93,7 +93,7 @@ body {
     backdrop-filter: blur(15px);
     border-bottom: 1px solid var(--border-color);
     box-shadow: 0 4px 20px var(--shadow-color);
-    border-radius: 0 0 15px 15px;
+    
     box-sizing: border-box;
     height: clamp(40px, 8vw, 50px);
     /* Фиксированная минимальная высота */

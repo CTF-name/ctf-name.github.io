@@ -163,7 +163,11 @@ const translations = {
         
         // Навигация слайдера
         prev: '◄',
-        next: '►'
+        next: '►',
+
+        corporateDesc: 'Оптимизируйте рабочие процессы команды и отслеживайте аналитику.',
+        personalDesc: 'Управляйте своими личными сообществами и лентами с легкостью.',
+
     },
     en: {
         // Navigation
@@ -175,6 +179,9 @@ const translations = {
         corporate: 'Corporate',
         end: 'END',
         
+        corporateDesc: 'Streamline team workflows and track analytics.',
+        personalDesc: 'Manage your personal communities and feeds with ease.',
+
         // Headers and subheaders
         welcomeTitle: '@webhookos_bot',
         subtitle: 'Corporate Community Tracker',
