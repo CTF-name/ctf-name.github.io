@@ -988,6 +988,7 @@ input:checked + .slider .moon {
     backdrop-filter: blur(10px);
     border: none;
     box-shadow: none;
+    border-radius: 15px;
 }
 
 .glass-effect::before {
